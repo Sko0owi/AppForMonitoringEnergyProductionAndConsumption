@@ -4,12 +4,6 @@ import csv
 import src.readingsHandler as readingHandler
 #from src.readingsHandler import dateChange, generateReadingsChange, readings_dictionary, readings_header, readings_change_dictionary, showData
 
-
-
-
-
-
-
 def saveChangesToCSVFiles():
 
     with open('csvFiles/readingsFromRegister.csv', 'w', encoding='UTF8', newline='') as readings:
@@ -25,7 +19,6 @@ def saveChangesToCSVFiles():
             writer.writerows(readingHandler.readings_change_dictionary)
 
 def csvInit(fileExist):
-    global date_month,date_year
 
     if fileExist:
         with open('csvFiles/readingsFromRegister.csv', 'r') as readings:
@@ -44,14 +37,10 @@ def csvInit(fileExist):
         if len(readingHandler.readings_dictionary) > 0:
 
             last_date = readingHandler.readings_dictionary[len(readingHandler.readings_dictionary) - 1]['date'].split("/")
-            date_month = int(last_date[0])
-            date_year = int(last_date[1])
+            readingHandler.date_month = int(last_date[0])
+            readingHandler.date_year = int(last_date[1])
             readingHandler.dateChange('next')
 
         saveChangesToCSVFiles()
     else:
         saveChangesToCSVFiles()
-
-
-
-
